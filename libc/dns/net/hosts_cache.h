@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 The Android Open Source Project
+ * Copyright (C) 2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-#include <gtest/gtest.h>
+struct getnamaddr;
 
-#include <sys/syscall.h>
+int hc_getaddrinfo(const char *host, const char *service,
+		   const struct addrinfo *hints,
+		   struct addrinfo **result);
 
-TEST(unistd, syscall) {
-  ASSERT_EQ(getpid(), syscall(SYS_getpid));
-}
-
-// https://code.google.com/p/android/issues/detail?id=215853
-#if defined(__LP64__)
-  #if defined(SYS_mmap2)
-    #error SYS_mmap2 should not be defined for LP64
-  #endif
-#endif
+int hc_gethtbyname(const char *host, int af, struct getnamaddr *info);
